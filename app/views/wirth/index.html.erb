@@ -1,0 +1,25 @@
+<h1><a name="top">State Marker for Wirth Notation</a></h1>
+<% form_tag do %>
+	<%= label_tag(:wirth_notation, "Wirth Notation:") %><br/>
+	<%= text_area_tag(:wirth_notation, @wirth_notation) %><br/>
+	<%= submit_tag("Mark States") %>
+<% end %>
+
+<% if @wirth_notation %>
+<div id="wirth_state">
+	<h2>State</h2>
+	<ol>
+	<% @converted.each do |c| %>
+	<li><a href="#<%= c[:name] %>"><%= "<b>#{c[:name]}</b> = #{c[:stated]}." %></a></li>
+	<% end %>
+	</ol>
+</div>
+<h2>Automata</h2>
+<% @automatas.each do |n,a| %>
+    <h3><a name="<%= n %>"><%= n %></a></h3>
+    <pre>
+<%=h a -%>
+    </pre>
+    <a href="#top">Topo</a>
+<% end %>
+<% end %>

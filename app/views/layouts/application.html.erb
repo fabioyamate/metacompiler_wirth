@@ -1,0 +1,13 @@
+<html>
+	<head>
+		<title>
+			<%= @page_title or 'Compiler :: Wirth' %>
+		</title>
+		<%= stylesheet_link_tag 'layout' %> 
+	</head>
+	<body>
+		<div id="content">
+			<%= yield %>
+		</div>
+	</body>
+</html>
