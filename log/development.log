@@ -3939,3 +3939,98 @@ Processing WirthController#index (for 127.0.0.1 at 2009-11-03 11:12:57) [POST]
 Rendering template within layouts/application
 Rendering wirth/index
 Completed in 24ms (View: 3, DB: 0) | 200 OK [http://0.0.0.0/wirth]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-03 14:12:43) [GET]
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 55ms (View: 54, DB: 0) | 200 OK [http://0.0.0.0/wirth]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-03 14:12:53) [GET]
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-03 14:12:57) [GET]
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-03 14:16:34) [GET]
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 20ms (View: 19, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-03 14:16:42) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"KoP2Yog0bJXA6kAVgsu6CuhIcKJ5//aNSjPs92s6GuQ=", "wirth_notation"=>"A = \"new\"."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-03 14:29:53) [GET]
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 20ms (View: 19, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-03 14:29:54) [GET]
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-03 14:31:25) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"KoP2Yog0bJXA6kAVgsu6CuhIcKJ5//aNSjPs92s6GuQ=", "wirth_notation"=>"C = \"new\" ClassName \"(\" Params \")\".\r\nParams = Param { \",\" Param }.\r\nParam = \"int\" VariableName.\r\nVariableName = \"id\".\r\nClassName = \"id\"."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 6ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-03 14:34:04) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"KoP2Yog0bJXA6kAVgsu6CuhIcKJ5//aNSjPs92s6GuQ=", "wirth_notation"=>"C = \"new\" ClassName \"(\" Params \")\".\r\nParams = Param { \",\" Param }.\r\nParam = \"int\" VariableName.\r\nVariableName = \"id\".\r\nClassName = \"id\"."}
+
+NameError (uninitialized constant Compiler::Wirth::CharStream):
+  lib/mstwn.rb:41:in `init'
+  lib/mstwn.rb:35:in `initialize'
+  app/controllers/wirth_controller.rb:20:in `new'
+  app/controllers/wirth_controller.rb:20:in `index'
+  app/controllers/wirth_controller.rb:18:in `each'
+  app/controllers/wirth_controller.rb:18:in `index'
+
+Rendered rescues/_trace (29.1ms)
+Rendered rescues/_request_and_response (1.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-03 14:34:34) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"KoP2Yog0bJXA6kAVgsu6CuhIcKJ5//aNSjPs92s6GuQ=", "wirth_notation"=>"C = \"new\" ClassName \"(\" Params \")\".\r\nParams = Param { \",\" Param }.\r\nParam = \"int\" VariableName.\r\nVariableName = \"id\".\r\nClassName = \"id\"."}
+
+NameError (uninitialized constant Compiler::Wirth::CharStream):
+  lib/mstwn.rb:41:in `init'
+  lib/mstwn.rb:35:in `initialize'
+  app/controllers/wirth_controller.rb:20:in `new'
+  app/controllers/wirth_controller.rb:20:in `index'
+  app/controllers/wirth_controller.rb:18:in `each'
+  app/controllers/wirth_controller.rb:18:in `index'
+
+Rendered rescues/_trace (30.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-03 14:35:04) [GET]
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 72ms (View: 71, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-03 14:35:10) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"KoP2Yog0bJXA6kAVgsu6CuhIcKJ5//aNSjPs92s6GuQ=", "wirth_notation"=>"A = C."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]

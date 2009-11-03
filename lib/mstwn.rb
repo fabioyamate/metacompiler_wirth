@@ -1,9 +1,6 @@
-require 'rubygems'
-require 'builder'
-require 'pp'
 require 'fa'
 
-module Compiler
+module Streamer
   class CharStream
     attr_reader :str
     
@@ -14,7 +11,7 @@ module Compiler
     end
     
     def finished
-      @idx == @len
+      @idx >= @len
     end
     
     def read
@@ -23,8 +20,11 @@ module Compiler
       @str[@idx-1].chr
     end
   end
+end
 
+module Compiler
   class Wirth
+    include Streamer
     include FiniteAutomata
 
     attr_reader :output, :str, :nfa
@@ -65,11 +65,6 @@ module Compiler
     
     def dfa
       minimize_dfa(nfa_to_dfa(@nfa))
-      #nfa_to_dfa(@nfa)
-    end
-    
-    def dfa1
-      nfa_to_dfa(@nfa)
     end
 
     def mark_states(entry_group=0)
@@ -191,63 +186,6 @@ module Compiler
   end
 end
 
-module JFLAP
-  def generate_jflap_fa_file(filename, fa)
-    f = File.new(filename, 'w')
-    counter = 0
-    xml = Builder::XmlMarkup.new(:target => f, :indent => 2)
-    xml.instruct!
-    xml.structure do
-    xml.type "fa"
-      fa[:states].each do |s|
-        xml.state :id => s, :name => "q#{s}" do
-          xml.initial if fa[:initial] == s
-          xml.final if fa[:final].include?(s)
-        end
-        counter = counter + 1
-      end
-      fa[:transitions].each do |k,v|
-        from = k
-        v.each do |t|
-          read, to = t
-          xml.transition do
-            xml.from from
-            xml.to to
-            xml.read read
-          end
-        end
-      end
-    end
-    f.close
-  end
-
-  def generate_jflap_fa_file2(filename, fa)
-    f = File.new(filename, 'w')
-    counter = 0
-    xml = Builder::XmlMarkup.new(:target => f, :indent => 2)
-    xml.instruct!
-    xml.structure do
-    xml.type "fa"
-      fa[:states].each do |s|
-        xml.state :id => s, :name => "q#{s}" do
-          xml.initial if fa[:initial] == s
-          xml.final if fa[:final].include?(s)
-        end
-        counter = counter + 1
-      end
-      fa[:transitions].each do |t|
-        from, read, to = t
-        xml.transition do
-          xml.from from
-          xml.to to
-          xml.read read
-        end
-      end
-    end
-    f.close
-  end
-end
-
 def format_transitions(fa)
   moves = []
   fa[:states].each do |state|
@@ -277,22 +215,3 @@ def fa_to_s(fa)
   end
   formatted
 end
-
-
-#s = Compiler::Wirth.new("( n | < T > ) { * ( n | < T > ) } { - ( n | < T > ) { * ( n | < T > ) } }.")
-#p s.execute
-#p s.nfa
-#p s.dfa
-#include JFLAP
-
-#s2 = Compiler::Wirth.new("T I [ < N { , N } > ] { , I [ < N { , N } > ] }.")
-#s2 = Compiler::Wirth.new("{ ( a | b ) } a b b.")
-#s2 = Compiler::Wirth.new('n ( C | O ) a [ C { , C } ] b.')
-#s2 = Compiler::Wirth.new('n C + p C * [ P { , P } ] / - | C.')
-#s2.execute
-#p s2.nfa
-#p s2.dfa
-#p s2.dfa
-#generate_jflap_fa_file2("abobrinha.jff", s2.nfa)
-#s2.dfa
-#p format_transitions(s2.dfa)
