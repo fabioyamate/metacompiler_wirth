@@ -28,7 +28,7 @@ class WirthController < ApplicationController
         @automatas[name] = fa_to_s(s.dfa)
       rescue SyntaxError => e
         @converted << { :name => name, :stated => e.message }
-      rescue Exception
+      rescue Exception => e
         @converted << { :name => name, :stated => "An unexpected error occurred" }
       end
     end

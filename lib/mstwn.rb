@@ -73,13 +73,10 @@ module Compiler
         case ch
         when '('
           st = @stack_states.pop
-          if @stack.empty?
-            @last_state = @last_state + 1
-          else
-            @last_state = st + 1
-          end
-          @stack_states << @last_state
+          @last_state = @last_state + 1
+          @stack_states << @last_state # pushing the last state
           @stack_states << @last_state - 1
+          p @stack_states
           @current_accept_state = @last_state
           @stack << ')'
           @output << "( #{st} "
@@ -96,11 +93,7 @@ module Compiler
           return
         when '['
           st = @stack_states.pop
-          if @stack.empty?
-            @last_state = @last_state + 1
-          else
-            @last_state = st + 1
-          end
+          @last_state = @last_state + 1
           @stack_states << @last_state
           @stack_states << @last_state - 1
           @current_accept_state << @last_state
