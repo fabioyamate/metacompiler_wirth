@@ -15,8 +15,8 @@ module Streamer
     end
     
     def read
-    return nil if finished
-      @idx = @idx + 1 if @idx < @len 
+      return nil if finished
+      @idx = @idx + 1 if @idx < @len
       @str[@idx-1].chr
     end
   end

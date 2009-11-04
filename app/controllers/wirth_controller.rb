@@ -15,9 +15,11 @@ class WirthController < ApplicationController
 		@converted = []
 		@automatas = {}
 		
+		@wirth_notation.gsub!(/(\342\200\230|\342\200\231|\342\200\234|\342\200\235)/, '"')
     @wirth_notation.scan(RULES).each do |r|
       begin
         name, decl = RULE.match(r).captures
+
         s = Wirth.new(decl)
         s.execute
     
