@@ -4469,3 +4469,87 @@ Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:43:06) [POST]
 Rendering template within layouts/application
 Rendering wirth/index
 Completed in 23ms (View: 20, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:45:12) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"Expressao = (((numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")}){(\"*\"|\"/\")( (numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")})}){(\"+\"|\"-\") (((numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")}) {(\"*\"|\"/\")(( numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")})})}."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 31ms (View: 20, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:46:05) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"a = ((( numero )))."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 7ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:46:59) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"a = ( a { b { c } } )."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 6ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:48:54) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"a = ( a { b { c } } )."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 22ms (View: 19, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:49:01) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"a = ( ( a { b { c } } ) )."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 5ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:49:10) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"a = ( ( ( a { b { c } } ) ) )."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:51:50) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"a = ( ( ( a { b { c } } ) ) )."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 23ms (View: 20, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:52:43) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"expressao = (((numero | identificador | \"(\" expressao \")\"){\"^\"( numero | identificador | \"(\" expressao \")\")}){(\"*\"|\"/\")( (numero | identificador | \"(\" expressao \")\".) {\"^\"( numero | identificador | \"(\" expressao \")\")})}){(\"+\"|\"-\") (((numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")}) {(\"*\"|\"/\")(( numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")})})}."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 23ms (View: 20, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:52:58) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"Expressao = (((numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")}){(\"*\"|\"/\")( (numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")})}){(\"+\"|\"-\") (((numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")}) {(\"*\"|\"/\")(( numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")})})}."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 212ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:53:43) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"Expressao = (((numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")}){(\"*\"|\"/\")( (numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")})}){(\"+\"|\"-\") (((numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")}) {(\"*\"|\"/\")(( numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")})})}."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 230ms (View: 20, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:55:24) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"Expressao = (((numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")}){(\"*\"|\"/\")( (numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")})}){(\"+\"|\"-\") (((numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")}) {(\"*\"|\"/\")(( numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")})})}."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 222ms (View: 20, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:55:36) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"Expressao = (((numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")}){(\"*\"|\"/\")( (numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")})}){(\"+\"|\"-\") (((numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")}) {(\"*\"|\"/\")(( numero | identificador | \"(\" expressao \")\") {\"^\"( numero | identificador | \"(\" expressao \")\")})})}."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 204ms (View: 3, DB: 0) | 200 OK [http://0.0.0.0/]

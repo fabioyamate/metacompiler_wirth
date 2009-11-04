@@ -75,8 +75,7 @@ module Compiler
           st = @stack_states.pop
           @last_state = @last_state + 1
           @stack_states << @last_state # pushing the last state
-          @stack_states << @last_state - 1
-          p @stack_states
+          @stack_states << st # pushing start group
           @current_accept_state = @last_state
           @stack << ')'
           @output << "( #{st} "
@@ -95,7 +94,7 @@ module Compiler
           st = @stack_states.pop
           @last_state = @last_state + 1
           @stack_states << @last_state
-          @stack_states << @last_state - 1
+          @stack_states << st
           @current_accept_state << @last_state
           @stack << "]" # adding end group mark
           @transitions << [st, nil, @last_state]

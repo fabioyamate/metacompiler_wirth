@@ -10,7 +10,6 @@ module FiniteAutomata
     while not unmarked_states.empty?
       t = unmarked_states.pop
       marked_states << t
-      p nfa[:symbols]
       nfa[:symbols].each do |sym|
         state = move_dfa(t, sym, nfa[:transitions])
         next if state.empty? # if there is no move to a state discart
@@ -94,7 +93,6 @@ module FiniteAutomata
   
   def e_closure_set(states, transitions)
     closure = []
-    p transitions
     states.each do |s|
       closure = closure + e_closure(s, transitions)
     end
@@ -110,12 +108,10 @@ module FiniteAutomata
         closure << to if state_with_transition_in_symbol
       end
     end
-    p closure.uniq.sort
     closure.uniq.sort
   end
   
   def move_dfa(states, symbol, transitions)
-    p "move_dfa:ok1"
     e_closure_set(move(states, symbol, transitions), transitions)
   end
   
