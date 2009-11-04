@@ -141,7 +141,7 @@ module Compiler
         when ' '
           next
         when '.'
-          raise SyntaxError, "invalid wirth rule" if not @stack.empty?
+          raise SyntaxError, "Invalid wirth rule. The end mark groups are missing its open group: #{@stack.join(',')}" if not @stack.empty?
           break
         when '|'
           st = @stack_states.pop # discart stack

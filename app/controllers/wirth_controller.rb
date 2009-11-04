@@ -16,15 +16,21 @@ class WirthController < ApplicationController
 		@automatas = {}
 		
     @wirth_notation.scan(RULES).each do |r|
-      name, decl = RULE.match(r).captures
-      s = Wirth.new(decl)
-      s.execute
-      
-      stated_rule = s.output.gsub(/\b(\d+)\b/, "<span>\\1</span>").gsub(/\b([A-Z][a-zA-Z]*)\b/, "<b>\\1</b>").gsub(/("[^\s]+")/, "<i>\\1</i>")
-      @converted << { :name => name, :stated => stated_rule }
-      @automatas[name] = fa_to_s(s.dfa)
+      begin
+        name, decl = RULE.match(r).captures
+        s = Wirth.new(decl)
+        s.execute
+    
+        stated_rule = s.output.gsub(/\b(\d+)\b/, "<span>\\1</span>").gsub(/\b([A-Z][a-zA-Z]*)\b/, "<b>\\1</b>").gsub(/("[^\s]+")/, "<i>\\1</i>")
+        @converted << { :name => name, :stated => stated_rule }
+        @automatas[name] = fa_to_s(s.dfa)
+      rescue SyntaxError => e
+        @converted << { :name => name, :stated => e.message }
+      rescue Exception
+        @converted << { :name => name, :stated => "An unexpected error occurred" }
+      end
     end
-    p @automatas
+    
 	end
 	
 	def reverse_rename_nonterminals(str)
