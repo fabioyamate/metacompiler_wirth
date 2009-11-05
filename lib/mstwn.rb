@@ -63,8 +63,6 @@ module Grammar
         :transitions => @transitions,
         :symbols => @symbols
       }
-      @states = (0..@last_state)
-      @output
     end
     
     def dfa
@@ -83,36 +81,26 @@ module Grammar
           @current_accept_state = @last_state
           @stack << ')' if ch.eql? '('
           @stack << ']' if ch.eql? '['
-          @output << "#{ch} s #{st} "
+          @output << "#{ch} #{st} "
           mark_states(st)
-        when /[\]\)]/
-          end_mark = @stack.pop
-          raise SyntaxError, "invalid end mark '#{ch}' expected '#{end_mark}'" unless ch.eql? end_mark
-          st = @stack_states.pop
-          end_group_state = @stack_states.pop
-          @stack_states << end_group_state
-          @transitions << [st, nil, end_group_state]
-          @output << ">#{ch}< #{end_group_state} "
-          @current_accept_state = end_group_state
-          return
         when '{'
           st = @stack_states.pop
           @last_state = @last_state + 1
           @stack_states << @last_state
           @stack_states << @last_state
           @current_accept_state = @last_state
-          @stack << "}"
+          @stack << '}'
           @transitions << [st, nil, @last_state]
-          @output << "{ #{@last_state} "
+          @output << "#{ch} #{@last_state} "
           mark_states(@last_state)
-        when '}'
+        when /[\]\)}]/
           end_mark = @stack.pop
           raise SyntaxError, "invalid end mark '#{ch}' expected '#{end_mark}'" unless ch.eql? end_mark
           st = @stack_states.pop
           end_group_state = @stack_states.pop
           @stack_states << end_group_state
           @transitions << [st, nil, end_group_state]
-          @output << "} #{end_group_state} "
+          @output << "#{ch} #{end_group_state} "
           @current_accept_state = end_group_state
           return
         when ' '
