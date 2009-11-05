@@ -120,25 +120,32 @@ module Grammar
           end
         else
           input = ch
-          while ch.eql? ' '
-            ch = @cs.read
-          end
-          if ch.eql? '"'
+          case ch
+          when '"'
             while true
               ch = @cs.read
               raise SyntaxError, "null char readed, unbalanced quotes" if ch.nil?
               input << ch
-              break if ch.eql? '"'
+              if ch.eql? '"'
+                lookahead = @cs.read # read next
+                @cs.undo
+                unless lookahead.eql? '"'
+                  raise SyntaxError, "terminal can't be empty" if input.length == 2
+                  break
+                end
+              end
             end
-          else
+          when /[a-zA-Z]/
             while true
               ch = @cs.read
-              unless ch =~ /[a-zA-Z]/
+              if not ch =~ /[a-zA-Z]/
                 @cs.undo
                 break
               end
               input << ch
             end
+          else
+            raise SyntaxError, "invalid name, can't start with '#{ch}'"
           end
           @symbols << input unless @symbols.include?(input)
           st = @stack_states.pop
