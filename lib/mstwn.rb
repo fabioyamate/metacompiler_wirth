@@ -75,43 +75,24 @@ module Compiler
       while not @cs.finished
         ch = @cs.read
         case ch
-        when '('
+        when /[\[\(]/
           st = @stack_states.pop
           @last_state = @last_state + 1
           @stack_states << @last_state # pushing the last state
           @stack_states << st # pushing start group
           @current_accept_state = @last_state
-          @stack << ')'
-          @output << "( #{st} "
+          @stack << ')' if ch.eql? '('
+          @stack << ']' if ch.eql? '['
+          @output << "#{ch} s #{st} "
           mark_states(st)
-        when ')'
+        when /[\]\)]/
           end_mark = @stack.pop
           raise SyntaxError, "invalid end mark '#{ch}' expected '#{end_mark}'" unless ch.eql? end_mark
           st = @stack_states.pop
           end_group_state = @stack_states.pop
           @stack_states << end_group_state
           @transitions << [st, nil, end_group_state]
-          @output << ") #{end_group_state} "
-          @current_accept_state = end_group_state
-          return
-        when '['
-          st = @stack_states.pop
-          @last_state = @last_state + 1
-          @stack_states << @last_state
-          @stack_states << st
-          @current_accept_state << @last_state
-          @stack << "]" # adding end group mark
-          @transitions << [st, nil, @last_state]
-          @output << "[ #{st} "
-          mark_states(st) # recursion call
-        when ']'
-          end_mark = @stack.pop
-          raise SyntaxError, "invalid end mark '#{ch}' expected '#{end_mark}'" unless ch.eql? end_mark
-          st = @stack_states.pop
-          end_group_state = @stack_states.pop
-          @stack_states << end_group_state
-          @transitions << [st, nil, end_group_state]
-          @output << "] #{end_group_state} "
+          @output << ">#{ch}< #{end_group_state} "
           @current_accept_state = end_group_state
           return
         when '{'
@@ -137,7 +118,7 @@ module Compiler
         when ' '
           next
         when '.'
-          raise SyntaxError, "Invalid wirth rule. The end mark groups are missing its open group: #{@stack.join(',')}" if not @stack.empty?
+          raise SyntaxError, "invalid wirth rule. The end mark groups are missing its open group: #{@stack.join(',')}" if not @stack.empty?
           break
         when '|'
           st = @stack_states.pop # discart stack
