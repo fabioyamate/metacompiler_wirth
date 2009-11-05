@@ -26,7 +26,7 @@ module Streamer
   end
 end
 
-module Compiler
+module Grammar
   class Wirth
     include Streamer
     include FiniteAutomata

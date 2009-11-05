@@ -1,7 +1,7 @@
 require 'mstwn'
 
 class WirthController < ApplicationController
-  include Compiler
+  include Grammar
   
   NONTERMINAL = /[a-zA-Z][a-zA-Z]*/
   TERMINAL = /".+"/
