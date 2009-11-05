@@ -6,7 +6,7 @@ class WirthController < ApplicationController
   NONTERMINAL = /[a-zA-Z][a-zA-Z]*/
   TERMINAL = /".+"/
   RULES = /.*\./
-  RULE = /(?:([a-zA-Z]+)\s*=)?\s*(.+\.)/
+  RULE = /(?:([a-zA-Z]+)\s*=)?\s*([^\.]+\.)/
   
   def index
     @wirth_notation = params[:wirth_notation]
