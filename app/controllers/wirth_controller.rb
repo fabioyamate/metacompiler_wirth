@@ -3,10 +3,10 @@ require 'mstwn'
 class WirthController < ApplicationController
   include Compiler
   
-  NONTERMINAL = /\b[A-Z][a-zA-Z]*\b/
+  NONTERMINAL = /[a-zA-Z][a-zA-Z]*/
   TERMINAL = /".+"/
   RULES = /.*\./
-  RULE = /(?:(.+)\s+=)?\s+(.+\.)/
+  RULE = /(?:(.+)\s*=)?\s*(.+\.)/
   
 	def index
 		@wirth_notation = params[:wirth_notation]

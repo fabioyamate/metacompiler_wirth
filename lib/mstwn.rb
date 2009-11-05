@@ -19,6 +19,10 @@ module Streamer
       @idx = @idx + 1 if @idx < @len
       @str[@idx-1].chr
     end
+    
+    def undo
+      @idx = @idx - 1 if @idx > 0
+    end
   end
 end
 
@@ -160,7 +164,10 @@ module Compiler
           else
             while true
               ch = @cs.read
-              break unless ch =~ /[a-zA-Z]/
+              unless ch =~ /[a-zA-Z]/
+                @cs.undo
+                break
+              end
               input << ch
             end
           end

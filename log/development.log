@@ -4553,3 +4553,135 @@ Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:55:36) [POST]
 Rendering template within layouts/application
 Rendering wirth/index
 Completed in 204ms (View: 3, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:58:05) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"exp = [[[a]]]."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 21ms (View: 20, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:58:07) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"exp = [[[a]]]."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:58:20) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"exp = [ [ [ a ] ] ]."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:58:29) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"exp = [ [ [ [ a ] ] ] ]."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 5ms (View: 3, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:58:49) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"exp = { a { b { c { d { e { f } } } } }."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 6ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-04 20:58:55) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"OP+0osASEpcq6SWY0pTiCpoXzpGrBsZEAhfXF6eRuIg=", "wirth_notation"=>"exp = { a { b { c { d { e { f } } } } } }."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 11ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-05 13:12:07) [GET]
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 149ms (View: 148, DB: 0) | 200 OK [http://0.0.0.0/wirth]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-05 13:12:22) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"bDom2vFNVUWdvwsk08fa1ajiq4vimRwz6OaJKXUqpT4=", "wirth_notation"=>"programa=\"main\"escopoproc{(funcao|procedimento)}."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 5ms (View: 3, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-05 13:12:31) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"bDom2vFNVUWdvwsk08fa1ajiq4vimRwz6OaJKXUqpT4=", "wirth_notation"=>"programa=\"main\" escopoproc {(funcao|procedimento)}."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-05 13:12:36) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"bDom2vFNVUWdvwsk08fa1ajiq4vimRwz6OaJKXUqpT4=", "wirth_notation"=>"programa=\"main\" escopoproc { ( funcao|procedimento ) }."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-05 13:13:10) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"bDom2vFNVUWdvwsk08fa1ajiq4vimRwz6OaJKXUqpT4=", "wirth_notation"=>"programa=\"main\" escopoproc { ( funcao|procedimento )}."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-05 13:13:17) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"bDom2vFNVUWdvwsk08fa1ajiq4vimRwz6OaJKXUqpT4=", "wirth_notation"=>"programa=\"main\" escopoproc {( funcao|procedimento )}."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-05 13:13:21) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"bDom2vFNVUWdvwsk08fa1ajiq4vimRwz6OaJKXUqpT4=", "wirth_notation"=>"programa=\"main\" escopoproc{( funcao|procedimento )}."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-05 13:13:51) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"bDom2vFNVUWdvwsk08fa1ajiq4vimRwz6OaJKXUqpT4=", "wirth_notation"=>"programa=\"main\" escopoproc{( funcao|procedimento )}."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-05 13:13:59) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"bDom2vFNVUWdvwsk08fa1ajiq4vimRwz6OaJKXUqpT4=", "wirth_notation"=>"programa=\"main\" escopoproc{( funcao|procedimento )}."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 21ms (View: 19, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-05 13:14:40) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"bDom2vFNVUWdvwsk08fa1ajiq4vimRwz6OaJKXUqpT4=", "wirth_notation"=>"programa=\"main\" escopoproc{( funcao|procedimento )}."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-05 13:14:41) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"bDom2vFNVUWdvwsk08fa1ajiq4vimRwz6OaJKXUqpT4=", "wirth_notation"=>"programa=\"main\" escopoproc{( funcao|procedimento )}."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 4ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-05 13:16:43) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"bDom2vFNVUWdvwsk08fa1ajiq4vimRwz6OaJKXUqpT4=", "wirth_notation"=>"programa=\"main\" escopoproc{( funcao|procedimento )}."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 22ms (View: 19, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing WirthController#index (for 127.0.0.1 at 2009-11-05 13:17:22) [POST]
+  Parameters: {"commit"=>"Mark States", "authenticity_token"=>"bDom2vFNVUWdvwsk08fa1ajiq4vimRwz6OaJKXUqpT4=", "wirth_notation"=>"programa=\"main\"escopoproc{(funcao|procedimento)}."}
+Rendering template within layouts/application
+Rendering wirth/index
+Completed in 6ms (View: 2, DB: 0) | 200 OK [http://0.0.0.0/]
