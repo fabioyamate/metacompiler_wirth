@@ -157,7 +157,7 @@ module Compiler
           if ch.eql? '"'
             while true
               ch = @cs.read
-              raise SyntaxError, "null char received, check quotes balance" if ch.nil?
+              raise SyntaxError, "null char readed, unbalanced quotes" if ch.nil?
               input << ch
               break if ch.eql? '"'
             end
