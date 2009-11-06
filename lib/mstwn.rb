@@ -65,7 +65,6 @@ module Grammar
     def dfa
       return @dfa unless @dfa.nil?
       @dfa = minimize_dfa(nfa_to_dfa(@nfa))
-      #@dfa = nfa_to_dfa(@nfa)
     end
     
     # Mark states and creates a nfa automata
@@ -310,6 +309,7 @@ end
 #w = Grammar::Wirth.new('( n | "<" T ">" ) { "*" ( n | "<" T ">" ) } { "-" ( n | "<" T ">" ) { "*" ( n | "<" T ">" ) } }.')
 #w = Grammar::Wirth.new('T I [ "<" N { "," N } ">" ] { "," I [ "<" N { "," N } ">" ] }.')
 #w = Grammar::Wirth.new('(((numero | identificador | "(" expressao ")") {"^"( numero | identificador | "(" expressao ")")}){("*"|"/")( (numero | identificador | "(" expressao ")") {"^"( numero | identificador | "(" expressao ")")})}){("+"|"-") (((numero | identificador | "(" expressao ")") {"^"( numero | identificador | "(" expressao ")")}) {("*"|"/")(( numero | identificador | "(" expressao ")") {"^"( numero | identificador | "(" expressao ")")})})}.')
+#w = Grammar::Wirth.new('( ( (numero | id | expr) { "+" numero } ) { "*" numero } ).')
 #pp format_transitions(w.nfa)
 #pp w.nfa
 #pp format_transitions(w.dfa)

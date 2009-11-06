@@ -35,10 +35,8 @@ module FiniteAutomata
   
   def minimize_dfa(dfa)
     partitions = initial_partition(dfa)
-    p "initial: #{partitions.inspect}"
     while true
       new_partitions = refine_partitions(partitions, dfa)
-      p "new: #{new_partitions.inspect}"
       break if new_partitions.eql? partitions
       partitions = new_partitions
     end
@@ -83,6 +81,8 @@ module FiniteAutomata
   private
 
   def e_closure(state, transitions)
+    return [state] unless transitions.has_key?(state)
+    
     closure = [state]
     transitions[state].each do |t|
       input, to = t
@@ -103,6 +103,7 @@ module FiniteAutomata
   def move(states, symbol, transitions)
     closure = []
     states.each do |s|
+      next unless transitions.has_key?(s)
       transitions[s].each do |t|
         input, to = t
         closure << to if input.eql?(symbol)
@@ -142,7 +143,7 @@ module FiniteAutomata
       transition = transitions[state].select { |t| t[0].eql? symbol }.first
       next if transition.nil? # discart if doesnt have transition
       input, to = transition
-      part = partitions.select { |p| p.include? input }.first
+      part = partitions.select { |p| p.include? to }.first
       groups[part] ||= []
       groups[part] << state
     end
