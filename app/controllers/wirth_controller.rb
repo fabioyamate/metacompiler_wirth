@@ -21,7 +21,6 @@ class WirthController < ApplicationController
         name, decl = RULE.match(r).captures
 
         s = Wirth.new(decl)
-        s.execute
 
         stated_rule = s.output.gsub(/\b(\d+)\b/, "<span>\\1</span>").gsub(/\b([A-Z][a-zA-Z]*)\b/, "<b>\\1</b>").gsub(/("[^\s]+")/, "<i>\\1</i>")
         @converted << { :name => name, :stated => stated_rule }
@@ -30,6 +29,7 @@ class WirthController < ApplicationController
         @converted << { :name => name, :stated => e.message }
       rescue Exception => e
         @converted << { :name => name, :stated => "An unexpected error occurred" }
+        p e.message
       end
     end
   end
