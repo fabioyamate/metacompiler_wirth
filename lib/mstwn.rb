@@ -51,7 +51,7 @@ module Grammar
       
       @last_state = 0 
       
-      @transitions = []
+      @transitions = {}
       
       @symbols = []
       @final_states = []
@@ -65,6 +65,7 @@ module Grammar
     def dfa
       return @dfa unless @dfa.nil?
       @dfa = minimize_dfa(nfa_to_dfa(@nfa))
+      #@dfa = nfa_to_dfa(@nfa)
     end
     
     # Mark states and creates a nfa automata
@@ -129,12 +130,17 @@ module Grammar
           @stack_states << end_group_state
           @stack_states << state_before_token
           
-          #@current_accept_state = @last_state
+          @current_accept_state = @last_state
           
           # for validation of syntax we put into stack
           # the expected end mark group
           @stack << ')' if ch.eql? '('
-          @stack << ']' if ch.eql? '['
+          
+          if ch.eql? '['
+            @stack << ']'
+            @transitions[state_before_token] ||= []
+            @transitions[state_before_token] << [nil, end_group_state]
+          end
           
           # we add to the output
           #   ( st    or  [ st
@@ -153,9 +159,12 @@ module Grammar
           #   state_before_token { end_group_state ... } end_group_state
           @stack_states << end_group_state
           @stack_states << end_group_state
-          #@current_accept_state = @last_state
+          @current_accept_state = @last_state
           @stack << '}'
-          @transitions << [state_before_token, nil, end_group_state]
+          
+          @transitions[state_before_token] ||= []
+          @transitions[state_before_token] << [nil, end_group_state]
+          
           @output << "#{ch} #{end_group_state} "
           
           # we recursivelly call to mark the internal rule,
@@ -173,7 +182,8 @@ module Grammar
           #    ... state_before_token ) end_group_state
           # produces  (state_before_token, nil) -> end_group_state
           end_group_state = @stack_states.last
-          @transitions << [state_before_token, nil, end_group_state]
+          @transitions[state_before_token] ||= []
+          @transitions[state_before_token] << [nil, end_group_state]
           @output << "#{ch} #{end_group_state} "
           
           # we then save a possible final state of the rule
@@ -206,7 +216,8 @@ module Grammar
             # in this case the transition when founded a pipe is to
             # the end of group
             end_state = @current_accept_state
-            @transitions << [state_before_token, nil, end_state]
+            @transitions[state_before_token] ||= []
+            @transitions[state_before_token] << [nil, end_state]
           end
         else # non-terminal and terminal
           # TODO: a tokenizer should deal with this
@@ -245,7 +256,10 @@ module Grammar
           @last_state = @last_state + 1
           end_state = @last_state
           @stack_states << end_state
-          @transitions << [state_before_token, input, end_state]
+          
+          @transitions[state_before_token] ||= []
+          @transitions[state_before_token] << [input, end_state]
+          
           @output << "#{input} #{@last_state} "
           
           # if outside of a group
@@ -270,7 +284,7 @@ module Grammar
         move = "initial " if state.eql? fa[:initial]
         move = " accept " if fa[:final].include?(to)
         move <<  "(#{state}, #{symbol}) -> #{to}"
-        p move
+        
         moves << move
       end
     end
@@ -290,3 +304,12 @@ module Grammar
     formatted
   end
 end
+
+require 'pp'
+include Grammar
+#w = Grammar::Wirth.new('( n | "<" T ">" ) { "*" ( n | "<" T ">" ) } { "-" ( n | "<" T ">" ) { "*" ( n | "<" T ">" ) } }.')
+w = Grammar::Wirth.new('T I [ "<" N { "," N } ">" ] { "," I [ "<" N { "," N } ">" ] }.')
+w = Grammar::Wirth.new('(((numero | identificador | "(" expressao ")") {"^"( numero | identificador | "(" expressao ")")}){("*"|"/")( (numero | identificador | "(" expressao ")") {"^"( numero | identificador | "(" expressao ")")})}){("+"|"-") (((numero | identificador | "(" expressao ")") {"^"( numero | identificador | "(" expressao ")")}) {("*"|"/")(( numero | identificador | "(" expressao ")") {"^"( numero | identificador | "(" expressao ")")})})}.')
+#pp format_transitions(w.nfa)
+#pp w.nfa
+pp format_transitions(w.dfa)

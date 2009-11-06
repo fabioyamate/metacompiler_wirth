@@ -8,18 +8,18 @@ module FiniteAutomata
     marked_states = []
     vocab = { initial_state => 0 }
     while not unmarked_states.empty?
-      t = unmarked_states.pop
-      marked_states << t
+      state = unmarked_states.reverse!.pop
+      marked_states << state
       nfa[:symbols].each do |sym|
-        state = move_dfa(t, sym, nfa[:transitions])
-        next if state.empty? # if there is no move to a state discart
-        dfa[t] ||= []
-        dfa[t] << [sym, state]
-        next if marked_states.include? state
-        unless unmarked_states.include? state
-          accept_states << state unless (nfa[:final] & state).empty?
-          unmarked_states << state
-          vocab[state] = label_state
+        next_state = move_dfa(state, sym, nfa[:transitions])
+        next if next_state.empty? # if there is no move to a state discart
+        dfa[state] ||= []
+        dfa[state] << [sym, next_state]
+        next if marked_states.include? next_state
+        unless unmarked_states.include? next_state
+          accept_states << next_state unless (nfa[:final] & next_state).empty?
+          unmarked_states << next_state
+          vocab[next_state] = label_state
           label_state = label_state + 1
         end
       end
@@ -35,8 +35,10 @@ module FiniteAutomata
   
   def minimize_dfa(dfa)
     partitions = initial_partition(dfa)
+    p "initial: #{partitions.inspect}"
     while true
       new_partitions = refine_partitions(partitions, dfa)
+      p "new: #{new_partitions.inspect}"
       break if new_partitions.eql? partitions
       partitions = new_partitions
     end
@@ -82,10 +84,9 @@ module FiniteAutomata
 
   def e_closure(state, transitions)
     closure = [state]
-    transitions.each do |t|
-      from, input, to = t
-      empty_transition_state = (from == state and input == nil)
-      next unless empty_transition_state
+    transitions[state].each do |t|
+      input, to = t
+      next unless input.nil?
       closure = closure + e_closure(to, transitions)
     end
     closure.uniq.sort
@@ -102,10 +103,9 @@ module FiniteAutomata
   def move(states, symbol, transitions)
     closure = []
     states.each do |s|
-      transitions.each do |t|
-        from, input, to = t
-        state_with_transition_in_symbol = (from == s and input == symbol)
-        closure << to if state_with_transition_in_symbol
+      transitions[s].each do |t|
+        input, to = t
+        closure << to if input.eql?(symbol)
       end
     end
     closure.uniq.sort
@@ -141,8 +141,10 @@ module FiniteAutomata
       next unless transitions.has_key?(state)
       transition = transitions[state].select { |t| t[0].eql? symbol }.first
       next if transition.nil? # discart if doesnt have transition
-      groups[transition] ||= []
-      groups[transition] << state
+      input, to = transition
+      part = partitions.select { |p| p.include? input }.first
+      groups[part] ||= []
+      groups[part] << state
     end
     parts = groups.values
     rest = partition - parts.flatten
