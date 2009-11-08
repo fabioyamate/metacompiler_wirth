@@ -67,6 +67,11 @@ module Grammar
       @dfa = minimize_dfa(nfa_to_dfa(@nfa))
     end
     
+    def minimized_dfa
+      return @minimized_dfa unless @minimized_dfa.nil?
+      @minimized_dfa = minimize_dfa(@dfa)
+    end
+    
     # Mark states and creates a nfa automata
     def execute
       mark_states
@@ -129,7 +134,7 @@ module Grammar
           @stack_states << end_group_state
           @stack_states << state_before_token
           
-          @current_accept_state = @last_state
+          #@final_states << @last_state if @stack.empty?
           
           # for validation of syntax we put into stack
           # the expected end mark group
@@ -158,7 +163,7 @@ module Grammar
           #   state_before_token { end_group_state ... } end_group_state
           @stack_states << end_group_state
           @stack_states << end_group_state
-          @current_accept_state = @last_state
+          #@final_states << @last_state if @stack.empty?
           @stack << '}'
           
           @transitions[state_before_token] ||= []
@@ -183,6 +188,7 @@ module Grammar
           end_group_state = @stack_states.last
           @transitions[state_before_token] ||= []
           @transitions[state_before_token] << [nil, end_group_state]
+          
           @output << "#{ch} #{end_group_state} "
           
           # we then save a possible final state of the rule
@@ -195,29 +201,34 @@ module Grammar
           #
           # other option is the last state after a NT or T
           #   ... T n '.'
-          @current_accept_state = end_group_state
+          #@current_accept_state = end_group_state
           return
         when ' ' # discart space chars
           next
         when '.' # end rule founded
           raise SyntaxError, "invalid wirth rule. The end mark groups are missing its open group: #{@stack.join(',')}" if not @stack.empty?
+          @final_states << @stack_states.pop
           break
         when '|'
           state_before_token = @stack_states.pop
-          @output << "| #{entry_group} "
-          @stack_states << entry_group
           
-          # if the pipe is found inside a group, it can't be
-          # a final state
           if @stack.empty?
-            @final_states << @current_accept_state
+            # if it is not inside a group then we have this cenario
+            #  entry_group A state_before_token | entry_group
+            @final_states << state_before_token
           else
-            # in this case the transition when founded a pipe is to
-            # the end of group
-            end_state = @current_accept_state
+            # if the pipe is found inside a group, it can't be
+            # a final state, in this case we need to add a transition
+            # to the end state of the group
+            #
+            #   ... n ( n ... m | ... ) n+1    (m, nil) -> n+1
+            end_state = @stack_states.last # the top is the end group state
             @transitions[state_before_token] ||= []
             @transitions[state_before_token] << [nil, end_state]
           end
+          
+          @output << "| #{entry_group} "
+          @stack_states << entry_group
         else # non-terminal and terminal
           # TODO: a tokenizer should deal with this
           input = ch
@@ -260,14 +271,8 @@ module Grammar
           @transitions[state_before_token] << [input, end_state]
           
           @output << "#{input} #{@last_state} "
-          
-          # if outside of a group
-          @current_accept_state = end_state if @stack.empty?
         end
       end
-      # find a '.', then the @current_accept_state is considered
-      # as a final state
-      @final_states << @current_accept_state
     end
     
     private :mark_states, :execute
@@ -282,7 +287,7 @@ module Grammar
         move = "        "
         move = "initial " if state.eql? fa[:initial]
         move = " accept " if fa[:final].include?(to)
-        move <<  "(#{state}, #{symbol}) -> #{to}"
+        move <<  "(#{state}, #{symbol.inspect}) -> #{to}"
         
         moves << move
       end
@@ -304,12 +309,17 @@ module Grammar
   end
 end
 
-#require 'pp'
-#include Grammar
+require 'pp'
+include Grammar
 #w = Grammar::Wirth.new('( n | "<" T ">" ) { "*" ( n | "<" T ">" ) } { "-" ( n | "<" T ">" ) { "*" ( n | "<" T ">" ) } }.')
 #w = Grammar::Wirth.new('T I [ "<" N { "," N } ">" ] { "," I [ "<" N { "," N } ">" ] }.')
 #w = Grammar::Wirth.new('(((numero | identificador | "(" expressao ")") {"^"( numero | identificador | "(" expressao ")")}){("*"|"/")( (numero | identificador | "(" expressao ")") {"^"( numero | identificador | "(" expressao ")")})}){("+"|"-") (((numero | identificador | "(" expressao ")") {"^"( numero | identificador | "(" expressao ")")}) {("*"|"/")(( numero | identificador | "(" expressao ")") {"^"( numero | identificador | "(" expressao ")")})})}.')
 #w = Grammar::Wirth.new('( ( (numero | id | expr) { "+" numero } ) { "*" numero } ).')
+#w = Grammar::Wirth.new('{(identificador "=" expressao | "if" (expressao comparador expressao | boolean) "then" seqcmds ["else" seqcmds] "ifend"| "switch" identificador "case" identificador seqcmds "break"{"case" identificador seqcmds "break"} "switchend" | "while" (expressao comparador expressao | boolean) "do" seqcmds "whilend"| "for" "("(identificador "=" expressao )";"(expressao comparador expressao | boolean)"; "expressao")" seqcmds "forend"| "scan" identificador | "print" (expressao | """expressao """)| "call" nome "("[identificador {","identificador}]")")";"}.')
+#w = Grammar::Wirth.new('{ ( a | c (exp | d exp d) | b )} | c.')
+#w = Grammar::Wirth.new('b c.')
+#p w.output
 #pp format_transitions(w.nfa)
 #pp w.nfa
 #pp format_transitions(w.dfa)
+#pp format_transitions(w.minimized_dfa)
