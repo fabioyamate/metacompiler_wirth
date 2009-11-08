@@ -24,12 +24,22 @@ class WirthController < ApplicationController
 
         stated_rule = s.output.gsub(/\b(\d+)\b/, "<span>\\1</span>").gsub(/\b([A-Z][a-zA-Z]*)\b/, "<b>\\1</b>").gsub(/("[^\s]+")/, "<i>\\1</i>")
         @converted << { :name => name, :stated => stated_rule }
-        @automatas[name] = fa_to_s(s.dfa)
+        
+        @automatas[name] = {
+          :nfa => fa_to_s(s.nfa),
+          :dfa => fa_to_s(s.dfa),
+          :minimized_dfa => fa_to_s(s.minimized_dfa)
+        }
       rescue SyntaxError => e
         @converted << { :name => name, :stated => e.message }
       rescue Exception => e
         @converted << { :name => name, :stated => "An unexpected error occurred" }
+        p "-" * 30
         p e.message
+        e.backtrace.each do |line|
+          p line
+        end
+        p "-" * 30
       end
     end
   end

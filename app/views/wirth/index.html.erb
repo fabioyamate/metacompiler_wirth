@@ -16,8 +16,19 @@
 <h2>Automata</h2>
 <% @automatas.each do |n,a| %>
     <h3><a name="<%= n %>"><%= n %></a></h3>
+    <h4>NFA</h4>
     <pre>
-<%=h a -%>
+<%=h a[:nfa] -%>
+    </pre>
+    <a href="#top">Topo</a>
+    <h4>DFA</h4>
+    <pre>
+<%=h a[:dfa] -%>
+    </pre>
+    <a href="#top">Topo</a>    
+    <h4>Minimized DFA</h4>
+    <pre>
+<%=h a[:minimized_dfa] -%>
     </pre>
     <a href="#top">Topo</a>
 <% end %>
