@@ -3,13 +3,15 @@
 		<title>
 			<%= @page_title or 'Compiler :: Wirth' %>
 		</title>
-		<%= stylesheet_link_tag 'layout' %> 
+		<%= stylesheet_link_tag 'layout' %>
 	</head>
 	<body>
 		<div id="content">
 			<%= yield %>
 		</div>
 	</body>
+	<%= javascript_include_tag "jquery" %>
+	<%= @javascript_code %>
     <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

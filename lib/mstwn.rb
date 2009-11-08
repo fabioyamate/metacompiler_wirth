@@ -309,8 +309,8 @@ module Grammar
   end
 end
 
-require 'pp'
-include Grammar
+#require 'pp'
+#include Grammar
 #w = Grammar::Wirth.new('( n | "<" T ">" ) { "*" ( n | "<" T ">" ) } { "-" ( n | "<" T ">" ) { "*" ( n | "<" T ">" ) } }.')
 #w = Grammar::Wirth.new('T I [ "<" N { "," N } ">" ] { "," I [ "<" N { "," N } ">" ] }.')
 #w = Grammar::Wirth.new('(((numero | identificador | "(" expressao ")") {"^"( numero | identificador | "(" expressao ")")}){("*"|"/")( (numero | identificador | "(" expressao ")") {"^"( numero | identificador | "(" expressao ")")})}){("+"|"-") (((numero | identificador | "(" expressao ")") {"^"( numero | identificador | "(" expressao ")")}) {("*"|"/")(( numero | identificador | "(" expressao ")") {"^"( numero | identificador | "(" expressao ")")})})}.')

@@ -11,6 +11,24 @@ textarea {
 	font-family: Courier;
 }
 
+h1, h2, h3, h4, h5, h6 { font-family: "Trebuchet MS" ; }
+
+h4 span {
+    color: #999;
+
+    font-size: 70%;
+}
+
+div.automatas {
+    margin-left: 20px;
+}
+
+div.automatas h4 {
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #333;
+    cursor: pointer;
+}
+
 #wirth_state li {
     margin: 0;
 	font-family: Courier;
