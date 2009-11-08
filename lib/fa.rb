@@ -82,7 +82,6 @@ module FiniteAutomata
 
   def e_closure(state, transitions)
     return [state] unless transitions.has_key?(state)
-    p "state: #{state.inspect}, trans: #{transitions[state].inspect}"
     closure = [state]
     transitions[state].each do |t|
       input, to = t
