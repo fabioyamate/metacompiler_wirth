@@ -250,14 +250,14 @@ module Grammar
           when /[a-zA-Z]/ # non-terminal
             while true
               ch = @cs.read
-              if not ch =~ /[a-zA-Z]/
+              if not ch =~ /[a-zA-Z_]/
                 @cs.undo
                 break
               end
               input << ch
             end
           else
-            raise SyntaxError, "invalid name, can't start with '#{ch}'"
+            raise SyntaxError, "invalid name, can't have '#{ch}'"
           end
           @symbols << input unless @symbols.include?(input)
           state_before_token = @stack_states.pop

@@ -3,10 +3,10 @@ require 'mstwn'
 class WirthController < ApplicationController
   include Grammar
   
-  NONTERMINAL = /[a-zA-Z][a-zA-Z]*/
+  NONTERMINAL = /[a-zA-Z][a-zA-Z_]*/
   TERMINAL = /".+"/
   RULES = /.*\./
-  RULE = /(?:([a-zA-Z]+)\s*=)?\s*([^\.]+\.)/
+  RULE = /(?:([a-zA-Z][a-zA-Z_]*)\s*=)?\s*([^\.]+\.)/
   
   def index
     @wirth_notation = params[:wirth_notation]
@@ -22,7 +22,7 @@ class WirthController < ApplicationController
 
         s = Wirth.new(decl)
 
-        stated_rule = s.output.gsub(/\b(\d+)\b/, "<span>\\1</span>").gsub(/\b([A-Z][a-zA-Z]*)\b/, "<b>\\1</b>").gsub(/("[^\s]+")/, "<i>\\1</i>")
+        stated_rule = s.output.gsub(/(\s+".+"\s+)/, "<i>\\1</i>").gsub(/(\s+[a-zA-Z][a-zA-Z_]*\s+)/, "<b>\\1</b>").gsub(/\b(\d+)\b/, "<span>\\1</span>")
         @converted << { :name => name, :stated => stated_rule }
         
         @automatas[name] = {
