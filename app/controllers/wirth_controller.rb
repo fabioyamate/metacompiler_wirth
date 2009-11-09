@@ -1,4 +1,4 @@
-require 'mstwn'
+require 'grammar_wirth'
 
 class WirthController < ApplicationController
   include Grammar
