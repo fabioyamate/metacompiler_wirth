@@ -64,7 +64,7 @@ module Grammar
     # Obtains the minimized dfa automata
     def dfa
       return @dfa unless @dfa.nil?
-      @dfa = minimize_dfa(nfa_to_dfa(@nfa))
+      @dfa = nfa_to_dfa(@nfa)
     end
     
     def minimized_dfa
