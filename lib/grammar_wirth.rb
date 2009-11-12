@@ -69,7 +69,7 @@ module Grammar
     
     def minimized_dfa
       return @minimized_dfa unless @minimized_dfa.nil?
-      @minimized_dfa = minimize_dfa(@dfa)
+      @minimized_dfa = minimize_dfa(dfa)
     end
     
     # Mark states and creates a nfa automata
