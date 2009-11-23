@@ -1,8 +1,13 @@
 module JFLAP
   def generate_jflap_fa_file(filename, fa)
     f = File.new(filename, 'w')
+    generate_jflap_fa(f, fa)
+    f.close
+  end
+  
+  def generate_jflap_fa(target, fa)
     counter = 0
-    xml = Builder::XmlMarkup.new(:target => f, :indent => 2)
+    xml = Builder::XmlMarkup.new(:target => target, :indent => 2)
     xml.instruct!
     xml.structure do
     xml.type "fa"
@@ -15,6 +20,7 @@ module JFLAP
       end
       fa[:transitions].each do |k,v|
         from = k
+        next if v.nil?
         v.each do |t|
           read, to = t
           xml.transition do
@@ -25,7 +31,6 @@ module JFLAP
         end
       end
     end
-    f.close
   end
 
   def generate_jflap_fa_file2(filename, fa)
